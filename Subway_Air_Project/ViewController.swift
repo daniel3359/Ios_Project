@@ -7,18 +7,125 @@
 //
 
 import UIKit
+import MapKit
+var item:[String:String] = [:]
+var items:[[String:String]] = []
+class ViewController: UIViewController, MKMapViewDelegate {
 
-class ViewController: UIViewController {
-
+    @IBOutlet weak var mapVIew: MKMapView!
+    let listEndPoint = "http://opendata.busan.go.kr/openapi/service/IndoorAirQuality/getIndoorAirQualityByItem"
+    let detailEndPoint = "http://opendata.busan.go.kr/openapi/service/IndoorAirQuality/getIndoorAirQualityByStation"
+    let serviceKey = "tbkRHovJzFjj5nnamShOHKHBHo7AQ%2FzPRqfK0FEAttBG1Ky17MM90gULHixVa3bQTdkrVZJj6hBInHlOozfVxg%3D%3D"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        mapVIew.delegate = self
+        // pList data 가져오기
+        let path = Bundle.main.path(forResource: "ViewPoint", ofType: "plist")
+        print("path = \(String(describing: path))")
+        let contents = NSArray(contentsOfFile: path!)
+        print("contents = \(String(describing: contents))")
+        var annotations = [MKPointAnnotation]()
+        getList()
+        if let myItems = contents {
+            for i in myItems {
+                //점 찍어서 나오려면 as anyobject 해줘야함
+                let lat = (i as AnyObject).value(forKey: "lat")
+                let long = (i as AnyObject).value(forKey: "long")
+                let title = (i as AnyObject).value(forKey: "title")
+                var subTitle = ""
+                let k = "서면역1호선승강장"
+                print("lat = \(String(describing: lat))")
+                
+                let annotation = MKPointAnnotation()
+                //변환
+                let myLat = (lat as! NSString).doubleValue
+                let myLong = (long as! NSString).doubleValue
+                //?는 닐이면 안하고 닐아니면 바로하고 컨디셔널 바인딩
+                let myTitle = title as? String
+                if myTitle == "서면역1호선대합실"{
+                    subTitle = "현재수치: " + item["서면역1호선대합실"]!
+                }else if myTitle == "남포역대합실"{
+                    subTitle = "현재수치: " + item["남포역대합실"]!
+                }else if myTitle == "사상역대합실"{
+                    subTitle = "현재수치: " + item["사상역대합실"]!
+                }else if myTitle == "수영역대합실"{
+                    subTitle = "현재수치: " + item["수영역대합실"]!
+                }else if myTitle == "동래역4호선대합실"{
+                    subTitle = "현재수치: " + item["동래역4호선대합실"]!
+                }else if myTitle == "덕천역대합실"{
+                    subTitle = "현재수치: " + item["덕천역대합실"]!
+                }else if myTitle == "미남역대합실"{
+                    subTitle = "현재수치: " + item["미남역대합실"]!
+                }else {
+                    subTitle = "현재수치: " + item["연산역대합실"]!
+                }
+                annotation.coordinate.latitude = myLat
+                annotation.coordinate.longitude = myLong
+                annotation.title = myTitle
+                annotation.subtitle = subTitle
+                annotations.append(annotation)
+                //핀마다 딜리게이트 다해줘야한다 포문
+                mapVIew.delegate = self
+                
+            }
+        }else{
+            print("contents 는 nil!")
+        }
+        //보여주기전에 모든 핀의 틀을 다 나오게함
+        mapVIew.showAnnotations(annotations, animated: true)
+        mapVIew.addAnnotations(annotations)
+        //getList()
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "MyPin"
+        var  annotationView = mapVIew.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+        getList()
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+            
+            if Int(item[annotation.title!!]!)!  > 50 && Int(item[annotation.title!!]!)! < 101{
+                annotationView?.pinTintColor = UIColor.orange
+            }else if Int(item[annotation.title!!]!)! > 100{
+                annotationView?.pinTintColor = UIColor.red
+            }else if Int(item[annotation.title!!]!)! > 30 && Int(item[annotation.title!!]!)! < 51{
+                annotationView?.pinTintColor = UIColor.green
+            }else{
+                annotationView?.pinTintColor = UIColor.blue
+            }
+        }
+        
+        return annotationView
+    }
+    
+    func getList(){
+        //한글없으니 퍼센트 인코딩 안해도됨
+        //반환형이 옵셔널이기때문에 언랩핑 해야됨
+        //공백데이터 는 트림잉
+        //한번에 다받기 api예시에서 받기 numofRows
+        let str = listEndPoint + "?serviceKey=\(serviceKey)&numOfRows=1&item=pm10"
+        let parse = Parser()
+        if let url = URL(string: str){
+            if let parser = XMLParser(contentsOf: url){
+                
+                parser.delegate = parse
+                
+                let success = parser.parse()
+                if success {
+                    print("파싱성공")
+                    print(items)
+                }else{
+                    print("파싱실패")
+                }
+            }
+            
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
 
 
 }

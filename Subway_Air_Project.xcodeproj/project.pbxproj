@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B529A541FAEF8D100D0C1A2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B529A531FAEF8D100D0C1A2 /* MapKit.framework */; };
+		8B529A561FAF0F5600D0C1A2 /* ViewPoint.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B529A551FAF0F5600D0C1A2 /* ViewPoint.plist */; };
+		8B529A581FAF1EB900D0C1A2 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B529A571FAF1EB900D0C1A2 /* Parser.swift */; };
 		8BDC4F571FADF974000DEE0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC4F561FADF974000DEE0D /* AppDelegate.swift */; };
 		8BDC4F591FADF974000DEE0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDC4F581FADF974000DEE0D /* ViewController.swift */; };
 		8BDC4F5C1FADF974000DEE0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BDC4F5A1FADF974000DEE0D /* Main.storyboard */; };
@@ -34,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B529A531FAEF8D100D0C1A2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8B529A551FAF0F5600D0C1A2 /* ViewPoint.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ViewPoint.plist; sourceTree = "<group>"; };
+		8B529A571FAF1EB900D0C1A2 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		8BDC4F531FADF974000DEE0D /* Subway_Air_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Subway_Air_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDC4F561FADF974000DEE0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BDC4F581FADF974000DEE0D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B529A541FAEF8D100D0C1A2 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B529A521FAEF8D000D0C1A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B529A531FAEF8D100D0C1A2 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8BDC4F4A1FADF974000DEE0D = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +96,7 @@
 				8BDC4F6A1FADF974000DEE0D /* Subway_Air_ProjectTests */,
 				8BDC4F751FADF974000DEE0D /* Subway_Air_ProjectUITests */,
 				8BDC4F541FADF974000DEE0D /* Products */,
+				8B529A521FAEF8D000D0C1A2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,8 +113,10 @@
 		8BDC4F551FADF974000DEE0D /* Subway_Air_Project */ = {
 			isa = PBXGroup;
 			children = (
+				8B529A551FAF0F5600D0C1A2 /* ViewPoint.plist */,
 				8BDC4F561FADF974000DEE0D /* AppDelegate.swift */,
 				8BDC4F581FADF974000DEE0D /* ViewController.swift */,
+				8B529A571FAF1EB900D0C1A2 /* Parser.swift */,
 				8BDC4F5A1FADF974000DEE0D /* Main.storyboard */,
 				8BDC4F5D1FADF974000DEE0D /* Assets.xcassets */,
 				8BDC4F5F1FADF974000DEE0D /* LaunchScreen.storyboard */,
@@ -233,6 +251,7 @@
 			files = (
 				8BDC4F611FADF974000DEE0D /* LaunchScreen.storyboard in Resources */,
 				8BDC4F5E1FADF974000DEE0D /* Assets.xcassets in Resources */,
+				8B529A561FAF0F5600D0C1A2 /* ViewPoint.plist in Resources */,
 				8BDC4F5C1FADF974000DEE0D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +279,7 @@
 			files = (
 				8BDC4F591FADF974000DEE0D /* ViewController.swift in Sources */,
 				8BDC4F571FADF974000DEE0D /* AppDelegate.swift in Sources */,
+				8B529A581FAF1EB900D0C1A2 /* Parser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +522,7 @@
 				8BDC4F7D1FADF974000DEE0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8BDC4F7E1FADF974000DEE0D /* Build configuration list for PBXNativeTarget "Subway_Air_ProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +531,7 @@
 				8BDC4F801FADF974000DEE0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8BDC4F811FADF974000DEE0D /* Build configuration list for PBXNativeTarget "Subway_Air_ProjectUITests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +540,7 @@
 				8BDC4F831FADF974000DEE0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
