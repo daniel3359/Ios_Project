@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,40 +22,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="e35-cc-4uv">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="e35-cc-4uv">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" ●  좋음" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ID8-IF-Ns9" colorLabel="IBBuiltInLabel-Red">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" ●  좋음" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ID8-IF-Ns9" colorLabel="IBBuiltInLabel-Red">
                                 <rect key="frame" x="16" y="631" width="58" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.081255342100896133" green="0.082935805772955895" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" ● 보통" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQw-Ph-YlQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" ● 보통" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQw-Ph-YlQ">
                                 <rect key="frame" x="102" y="631" width="53" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.1214264607805462" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="●  매우나쁨" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obz-96-PQM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="●  매우나쁨" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obz-96-PQM">
                                 <rect key="frame" x="276" y="631" width="83" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.11012991955025109" blue="0.028038885597429397" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="●  나쁨" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DO5-o5-wa5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="●  나쁨" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DO5-o5-wa5">
                                 <rect key="frame" x="189" y="631" width="53" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.64113105520245939" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DO5-o5-wa5" firstAttribute="leading" secondItem="PQw-Ph-YlQ" secondAttribute="trailing" constant="34" id="4le-9D-5bK"/>
+                            <constraint firstItem="PQw-Ph-YlQ" firstAttribute="top" secondItem="e35-cc-4uv" secondAttribute="bottom" constant="8" id="587-Vb-M2k"/>
+                            <constraint firstItem="DO5-o5-wa5" firstAttribute="top" secondItem="e35-cc-4uv" secondAttribute="bottom" constant="8" id="AvP-VA-bqs"/>
+                            <constraint firstItem="PQw-Ph-YlQ" firstAttribute="leading" secondItem="ID8-IF-Ns9" secondAttribute="trailing" constant="28" id="BJA-DJ-6SE"/>
+                            <constraint firstItem="ID8-IF-Ns9" firstAttribute="top" secondItem="e35-cc-4uv" secondAttribute="bottom" constant="8" id="E2e-lk-Z3a"/>
+                            <constraint firstAttribute="trailing" secondItem="e35-cc-4uv" secondAttribute="trailing" id="Khz-76-WuI"/>
+                            <constraint firstItem="obz-96-PQM" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="KxV-dI-ehw"/>
+                            <constraint firstItem="obz-96-PQM" firstAttribute="leading" secondItem="DO5-o5-wa5" secondAttribute="trailing" constant="34" id="PUc-vF-0rL"/>
+                            <constraint firstItem="obz-96-PQM" firstAttribute="leading" secondItem="DO5-o5-wa5" secondAttribute="trailing" constant="34" id="QSu-7D-WHr"/>
+                            <constraint firstItem="obz-96-PQM" firstAttribute="top" secondItem="e35-cc-4uv" secondAttribute="bottom" constant="8" id="RhI-0I-5m7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ID8-IF-Ns9" secondAttribute="bottom" constant="15" id="SfR-ik-7yh"/>
+                            <constraint firstItem="PQw-Ph-YlQ" firstAttribute="leading" secondItem="ID8-IF-Ns9" secondAttribute="trailing" constant="28" id="VQP-w6-vud"/>
+                            <constraint firstItem="e35-cc-4uv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dKk-2Z-JSf"/>
+                            <constraint firstItem="ID8-IF-Ns9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="emi-F9-hsd"/>
+                            <constraint firstItem="e35-cc-4uv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jm4-d5-FT6"/>
+                            <constraint firstItem="DO5-o5-wa5" firstAttribute="leading" secondItem="PQw-Ph-YlQ" secondAttribute="trailing" constant="34" id="jyB-os-6lJ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DO5-o5-wa5" secondAttribute="bottom" constant="15" id="mCc-VX-Q69"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="obz-96-PQM" secondAttribute="bottom" constant="15" id="nBA-yV-RiJ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PQw-Ph-YlQ" secondAttribute="bottom" constant="15" id="nYL-Ze-KkQ"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="mapVIew" destination="e35-cc-4uv" id="OKV-Mq-0Pt"/>
