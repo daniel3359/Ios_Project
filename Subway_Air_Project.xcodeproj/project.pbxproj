@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04B9B1E91FB03BA000D003F6 /* image in Resources */ = {isa = PBXBuildFile; fileRef = 04B9B1E81FB03BA000D003F6 /* image */; };
 		8B529A541FAEF8D100D0C1A2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B529A531FAEF8D100D0C1A2 /* MapKit.framework */; };
 		8B529A561FAF0F5600D0C1A2 /* ViewPoint.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B529A551FAF0F5600D0C1A2 /* ViewPoint.plist */; };
 		8B529A581FAF1EB900D0C1A2 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B529A571FAF1EB900D0C1A2 /* Parser.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04B9B1E81FB03BA000D003F6 /* image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = image; sourceTree = "<group>"; };
 		8B529A531FAEF8D100D0C1A2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8B529A551FAF0F5600D0C1A2 /* ViewPoint.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ViewPoint.plist; sourceTree = "<group>"; };
 		8B529A571FAF1EB900D0C1A2 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		8BDC4F551FADF974000DEE0D /* Subway_Air_Project */ = {
 			isa = PBXGroup;
 			children = (
+				04B9B1E81FB03BA000D003F6 /* image */,
 				8B529A551FAF0F5600D0C1A2 /* ViewPoint.plist */,
 				8BDC4F561FADF974000DEE0D /* AppDelegate.swift */,
 				8BDC4F581FADF974000DEE0D /* ViewController.swift */,
@@ -250,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BDC4F611FADF974000DEE0D /* LaunchScreen.storyboard in Resources */,
+				04B9B1E91FB03BA000D003F6 /* image in Resources */,
 				8BDC4F5E1FADF974000DEE0D /* Assets.xcassets in Resources */,
 				8B529A561FAF0F5600D0C1A2 /* ViewPoint.plist in Resources */,
 				8BDC4F5C1FADF974000DEE0D /* Main.storyboard in Resources */,

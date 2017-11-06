@@ -35,7 +35,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
                 let long = (i as AnyObject).value(forKey: "long")
                 let title = (i as AnyObject).value(forKey: "title")
                 var subTitle = ""
-                let k = "서면역1호선승강장"
+                
                 print("lat = \(String(describing: lat))")
                 
                 let annotation = MKPointAnnotation()
@@ -89,12 +89,26 @@ class ViewController: UIViewController, MKMapViewDelegate {
             
             if Int(item[annotation.title!!]!)!  > 50 && Int(item[annotation.title!!]!)! < 101{
                 annotationView?.pinTintColor = UIColor.orange
+                let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                leftIconView.image = UIImage(named: "image/bad.png")
+                annotationView?.leftCalloutAccessoryView = leftIconView
+                
             }else if Int(item[annotation.title!!]!)! > 100{
                 annotationView?.pinTintColor = UIColor.red
+                let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                leftIconView.image = UIImage(named: "image/veryBad.png")
+                annotationView?.leftCalloutAccessoryView = leftIconView
+                
             }else if Int(item[annotation.title!!]!)! > 30 && Int(item[annotation.title!!]!)! < 51{
                 annotationView?.pinTintColor = UIColor.green
+                let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                leftIconView.image = UIImage(named: "image/good.png")
+                annotationView?.leftCalloutAccessoryView = leftIconView
             }else{
                 annotationView?.pinTintColor = UIColor.blue
+                let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                leftIconView.image = UIImage(named: "image/veryGood.png")
+                annotationView?.leftCalloutAccessoryView = leftIconView
             }
         }
         
