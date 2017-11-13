@@ -11,7 +11,10 @@ import MapKit
 var item:[String:String] = [:]
 var items:[[String:String]] = []
 class ViewController: UIViewController, MKMapViewDelegate {
-
+    
+    var flag = 1
+    @IBOutlet weak var segControl: UISegmentedControl!
+    
     @IBOutlet weak var mapVIew: MKMapView!
     let listEndPoint = "http://opendata.busan.go.kr/openapi/service/IndoorAirQuality/getIndoorAirQualityByItem"
     let detailEndPoint = "http://opendata.busan.go.kr/openapi/service/IndoorAirQuality/getIndoorAirQualityByStation"
@@ -27,7 +30,11 @@ class ViewController: UIViewController, MKMapViewDelegate {
         let contents = NSArray(contentsOfFile: path!)
         print("contents = \(String(describing: contents))")
         var annotations = [MKPointAnnotation]()
-        getList()
+        if(segControl.selectedSegmentIndex == 0){
+            getList()
+        }else{
+            getNo2List()
+        }
         if let myItems = contents {
             for i in myItems {
                 //점 찍어서 나오려면 as anyobject 해줘야함
@@ -82,10 +89,18 @@ class ViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "MyPin"
         var  annotationView = mapVIew.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
-        getList()
+        
+        if(segControl.selectedSegmentIndex == 0){
+            getList()
+        }else{
+            getNo2List()
+        }
+        
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView?.canShowCallout = true
+            if(segControl.selectedSegmentIndex == 0){
+                
             
             if Int(item[annotation.title!!]!)!  > 50 && Int(item[annotation.title!!]!)! < 101{
                 annotationView?.pinTintColor = UIColor.orange
@@ -110,6 +125,32 @@ class ViewController: UIViewController, MKMapViewDelegate {
                 leftIconView.image = UIImage(named: "image/veryGood.png")
                 annotationView?.leftCalloutAccessoryView = leftIconView
             }
+                
+            }else{//flag 조건
+                if Double(item[annotation.title!!]!)!  > 0.059 && Double(item[annotation.title!!]!)! < 0.19{
+                    annotationView?.pinTintColor = UIColor.orange
+                    let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                    leftIconView.image = UIImage(named: "image/bad.png")
+                    annotationView?.leftCalloutAccessoryView = leftIconView
+                    
+                }else if Double(item[annotation.title!!]!)! > 0.2{
+                    annotationView?.pinTintColor = UIColor.red
+                    let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                    leftIconView.image = UIImage(named: "image/veryBad.png")
+                    annotationView?.leftCalloutAccessoryView = leftIconView
+                    
+                }else if Double(item[annotation.title!!]!)! > 0.029 && Double(item[annotation.title!!]!)! < 0.06{
+                    annotationView?.pinTintColor = UIColor.green
+                    let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                    leftIconView.image = UIImage(named: "image/good.png")
+                    annotationView?.leftCalloutAccessoryView = leftIconView
+                }else{
+                    annotationView?.pinTintColor = UIColor.blue
+                    let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                    leftIconView.image = UIImage(named: "image/veryGood.png")
+                    annotationView?.leftCalloutAccessoryView = leftIconView
+                }
+            }//flag 조건
         }
         
         return annotationView
@@ -137,6 +178,40 @@ class ViewController: UIViewController, MKMapViewDelegate {
             }
             
         }
+    }
+    func getNo2List(){
+        //한글없으니 퍼센트 인코딩 안해도됨
+        //반환형이 옵셔널이기때문에 언랩핑 해야됨
+        //공백데이터 는 트림잉
+        //한번에 다받기 api예시에서 받기 numofRows
+        let str = listEndPoint + "?serviceKey=\(serviceKey)&numOfRows=1&item=no2"
+        let parse = Parser()
+        if let url = URL(string: str){
+            if let parser = XMLParser(contentsOf: url){
+                
+                parser.delegate = parse
+                
+                let success = parser.parse()
+                if success {
+                    print("파싱성공")
+                    print(items)
+                }else{
+                    print("파싱실패")
+                }
+            }
+            
+        }
+    }
+    
+    @IBAction func segPressed(_ sender: AnyObject) {
+//        if(segControl.selectedSegmentIndex == 0){
+//            viewDidLoad()
+//        }else{
+//            viewDidLoad()
+//        }
+    }
+    @IBAction func segC(_ sender: Any) {
+        viewDidLoad()
     }
 
     

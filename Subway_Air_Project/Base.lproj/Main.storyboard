@@ -54,8 +54,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="pm10"/>
-                                    <segment title="co"/>
+                                    <segment title="no2"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segC:" destination="BYZ-38-t0r" eventType="valueChanged" id="z2Y-xj-c2V"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -83,11 +86,12 @@
                     </view>
                     <connections>
                         <outlet property="mapVIew" destination="e35-cc-4uv" id="OKV-Mq-0Pt"/>
+                        <outlet property="segControl" destination="HSy-bd-bnN" id="Mjv-6d-Y4t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="384.80000000000001" y="33.733133433283363"/>
+            <point key="canvasLocation" x="399" y="9"/>
         </scene>
     </scenes>
 </document>
