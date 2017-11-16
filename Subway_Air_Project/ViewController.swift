@@ -10,15 +10,24 @@ import UIKit
 import MapKit
 var item:[String:String] = [:]
 var items:[[String:String]] = []
+var inFo = ""
 class ViewController: UIViewController, MKMapViewDelegate {
     
-    var flag = 1
+    
     @IBOutlet weak var segControl: UISegmentedControl!
     
     @IBOutlet weak var mapVIew: MKMapView!
     let listEndPoint = "http://opendata.busan.go.kr/openapi/service/IndoorAirQuality/getIndoorAirQualityByItem"
     let detailEndPoint = "http://opendata.busan.go.kr/openapi/service/IndoorAirQuality/getIndoorAirQualityByStation"
     let serviceKey = "tbkRHovJzFjj5nnamShOHKHBHo7AQ%2FzPRqfK0FEAttBG1Ky17MM90gULHixVa3bQTdkrVZJj6hBInHlOozfVxg%3D%3D"
+    
+//    if(segControl.selectedSegmentIndex == 0){
+//    getList()
+//    inFo = "미세먼지"
+//    }else{
+//    getNo2List()
+//    inFo = "이산화질소"
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +41,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
         var annotations = [MKPointAnnotation]()
         if(segControl.selectedSegmentIndex == 0){
             getList()
+            inFo = "미세먼지"
         }else{
             getNo2List()
+            inFo = "이산화질소"
         }
         if let myItems = contents {
             for i in myItems {
@@ -52,21 +63,21 @@ class ViewController: UIViewController, MKMapViewDelegate {
                 //?는 닐이면 안하고 닐아니면 바로하고 컨디셔널 바인딩
                 let myTitle = title as? String
                 if myTitle == "서면역1호선대합실"{
-                    subTitle = "현재수치: " + item["서면역1호선대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["서면역1호선대합실"]!
                 }else if myTitle == "남포역대합실"{
-                    subTitle = "현재수치: " + item["남포역대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["남포역대합실"]!
                 }else if myTitle == "사상역대합실"{
-                    subTitle = "현재수치: " + item["사상역대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["사상역대합실"]!
                 }else if myTitle == "수영역대합실"{
-                    subTitle = "현재수치: " + item["수영역대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["수영역대합실"]!
                 }else if myTitle == "동래역4호선대합실"{
-                    subTitle = "현재수치: " + item["동래역4호선대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["동래역4호선대합실"]!
                 }else if myTitle == "덕천역대합실"{
-                    subTitle = "현재수치: " + item["덕천역대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["덕천역대합실"]!
                 }else if myTitle == "미남역대합실"{
-                    subTitle = "현재수치: " + item["미남역대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["미남역대합실"]!
                 }else {
-                    subTitle = "현재수치: " + item["연산역대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["연산역대합실"]!
                 }
                 annotation.coordinate.latitude = myLat
                 annotation.coordinate.longitude = myLong
@@ -83,50 +94,51 @@ class ViewController: UIViewController, MKMapViewDelegate {
         //보여주기전에 모든 핀의 틀을 다 나오게함
         mapVIew.showAnnotations(annotations, animated: true)
         mapVIew.addAnnotations(annotations)
-        //getList()
+        
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "MyPin"
         var  annotationView = mapVIew.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
         
-        if(segControl.selectedSegmentIndex == 0){
-            getList()
-        }else{
-            getNo2List()
-        }
+//        if(segControl.selectedSegmentIndex == 0){
+//            getList()
+//        }else{
+//            getNo2List()
+//        }
         
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView?.canShowCallout = true
+            //seg조건 시작
             if(segControl.selectedSegmentIndex == 0){
                 
             
-            if Int(item[annotation.title!!]!)!  > 50 && Int(item[annotation.title!!]!)! < 101{
-                annotationView?.pinTintColor = UIColor.orange
-                let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
-                leftIconView.image = UIImage(named: "image/bad.png")
-                annotationView?.leftCalloutAccessoryView = leftIconView
+                if Int(item[annotation.title!!]!)!  > 50 && Int(item[annotation.title!!]!)! < 101{
+                    annotationView?.pinTintColor = UIColor.orange
+                    let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                    leftIconView.image = UIImage(named: "image/bad.png")
+                    annotationView?.leftCalloutAccessoryView = leftIconView
                 
-            }else if Int(item[annotation.title!!]!)! > 100{
-                annotationView?.pinTintColor = UIColor.red
-                let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
-                leftIconView.image = UIImage(named: "image/veryBad.png")
-                annotationView?.leftCalloutAccessoryView = leftIconView
+                }else if Int(item[annotation.title!!]!)! > 100{
+                    annotationView?.pinTintColor = UIColor.red
+                    let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                    leftIconView.image = UIImage(named: "image/veryBad.png")
+                    annotationView?.leftCalloutAccessoryView = leftIconView
                 
-            }else if Int(item[annotation.title!!]!)! > 30 && Int(item[annotation.title!!]!)! < 51{
-                annotationView?.pinTintColor = UIColor.green
-                let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
-                leftIconView.image = UIImage(named: "image/good.png")
-                annotationView?.leftCalloutAccessoryView = leftIconView
-            }else{
-                annotationView?.pinTintColor = UIColor.blue
-                let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
-                leftIconView.image = UIImage(named: "image/veryGood.png")
-                annotationView?.leftCalloutAccessoryView = leftIconView
-            }
+                }else if Int(item[annotation.title!!]!)! > 30 && Int(item[annotation.title!!]!)! < 51{
+                    annotationView?.pinTintColor = UIColor.green
+                    let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                    leftIconView.image = UIImage(named: "image/good.png")
+                    annotationView?.leftCalloutAccessoryView = leftIconView
+                }else{
+                    annotationView?.pinTintColor = UIColor.blue
+                    let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                    leftIconView.image = UIImage(named: "image/veryGood.png")
+                    annotationView?.leftCalloutAccessoryView = leftIconView
+                }
                 
-            }else{//flag 조건
+            }else{//seg 조건
                 if Double(item[annotation.title!!]!)!  > 0.059 && Double(item[annotation.title!!]!)! < 0.19{
                     annotationView?.pinTintColor = UIColor.orange
                     let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
@@ -150,17 +162,14 @@ class ViewController: UIViewController, MKMapViewDelegate {
                     leftIconView.image = UIImage(named: "image/veryGood.png")
                     annotationView?.leftCalloutAccessoryView = leftIconView
                 }
-            }//flag 조건
+            }//seg 조건
         }
         
         return annotationView
     }
     
     func getList(){
-        //한글없으니 퍼센트 인코딩 안해도됨
-        //반환형이 옵셔널이기때문에 언랩핑 해야됨
-        //공백데이터 는 트림잉
-        //한번에 다받기 api예시에서 받기 numofRows
+        
         let str = listEndPoint + "?serviceKey=\(serviceKey)&numOfRows=1&item=pm10"
         let parse = Parser()
         if let url = URL(string: str){
@@ -180,10 +189,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         }
     }
     func getNo2List(){
-        //한글없으니 퍼센트 인코딩 안해도됨
-        //반환형이 옵셔널이기때문에 언랩핑 해야됨
-        //공백데이터 는 트림잉
-        //한번에 다받기 api예시에서 받기 numofRows
+        
         let str = listEndPoint + "?serviceKey=\(serviceKey)&numOfRows=1&item=no2"
         let parse = Parser()
         if let url = URL(string: str){
