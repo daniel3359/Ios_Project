@@ -168,6 +168,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         return annotationView
     }
     
+    //미세먼지(pm10)
     func getList(){
         
         let str = listEndPoint + "?serviceKey=\(serviceKey)&numOfRows=1&item=pm10"
@@ -188,6 +189,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
             
         }
     }
+    
+    //이산화질소(No2)
     func getNo2List(){
         
         let str = listEndPoint + "?serviceKey=\(serviceKey)&numOfRows=1&item=no2"
@@ -216,6 +219,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
 //            viewDidLoad()
 //        }
     }
+    
     @IBAction func segC(_ sender: Any) {
         viewDidLoad()
     }
