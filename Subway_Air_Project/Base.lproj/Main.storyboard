@@ -49,12 +49,14 @@
                                 <color key="textColor" red="1" green="0.64113105520245939" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HSy-bd-bnN">
-                                <rect key="frame" x="140" y="90" width="95" height="29"/>
+                            <segmentedControl opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HSy-bd-bnN">
+                                <rect key="frame" x="64" y="72" width="247" height="29"/>
                                 <segments>
-                                    <segment title="pm10"/>
-                                    <segment title="no2"/>
+                                    <segment title="미세먼지"/>
+                                    <segment title="이산화질소"/>
+                                    <segment title="일산화탄소"/>
                                 </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="segC:" destination="BYZ-38-t0r" eventType="valueChanged" id="z2Y-xj-c2V"/>
                                 </connections>
@@ -67,6 +69,7 @@
                             <constraint firstItem="DO5-o5-wa5" firstAttribute="top" secondItem="e35-cc-4uv" secondAttribute="bottom" constant="8" id="AvP-VA-bqs"/>
                             <constraint firstItem="PQw-Ph-YlQ" firstAttribute="leading" secondItem="ID8-IF-Ns9" secondAttribute="trailing" constant="28" id="BJA-DJ-6SE"/>
                             <constraint firstItem="ID8-IF-Ns9" firstAttribute="top" secondItem="e35-cc-4uv" secondAttribute="bottom" constant="8" id="E2e-lk-Z3a"/>
+                            <constraint firstItem="HSy-bd-bnN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="HA6-ck-vxD"/>
                             <constraint firstAttribute="trailing" secondItem="e35-cc-4uv" secondAttribute="trailing" id="Khz-76-WuI"/>
                             <constraint firstItem="obz-96-PQM" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="KxV-dI-ehw"/>
                             <constraint firstItem="obz-96-PQM" firstAttribute="leading" secondItem="DO5-o5-wa5" secondAttribute="trailing" constant="34" id="PUc-vF-0rL"/>
@@ -74,21 +77,24 @@
                             <constraint firstItem="obz-96-PQM" firstAttribute="top" secondItem="e35-cc-4uv" secondAttribute="bottom" constant="8" id="RhI-0I-5m7"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ID8-IF-Ns9" secondAttribute="bottom" constant="15" id="SfR-ik-7yh"/>
                             <constraint firstItem="PQw-Ph-YlQ" firstAttribute="leading" secondItem="ID8-IF-Ns9" secondAttribute="trailing" constant="28" id="VQP-w6-vud"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="HSy-bd-bnN" secondAttribute="trailing" constant="124" id="VXG-lP-rDp"/>
                             <constraint firstItem="e35-cc-4uv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dKk-2Z-JSf"/>
                             <constraint firstItem="ID8-IF-Ns9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="emi-F9-hsd"/>
+                            <constraint firstItem="HSy-bd-bnN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="48" id="gf8-3c-zKi"/>
                             <constraint firstItem="HSy-bd-bnN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gkt-q2-LWD"/>
-                            <constraint firstItem="HSy-bd-bnN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="124" id="gsi-Tt-BNo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HSy-bd-bnN" secondAttribute="trailing" constant="48" id="jLj-hy-2ak"/>
                             <constraint firstItem="e35-cc-4uv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jm4-d5-FT6"/>
                             <constraint firstItem="DO5-o5-wa5" firstAttribute="leading" secondItem="PQw-Ph-YlQ" secondAttribute="trailing" constant="34" id="jyB-os-6lJ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DO5-o5-wa5" secondAttribute="bottom" constant="15" id="mCc-VX-Q69"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="obz-96-PQM" secondAttribute="bottom" constant="15" id="nBA-yV-RiJ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PQw-Ph-YlQ" secondAttribute="bottom" constant="15" id="nYL-Ze-KkQ"/>
-                            <constraint firstItem="HSy-bd-bnN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="26" id="yW9-4f-hSk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="부산실내대기질" id="M6q-Xl-2kU">
-                        <barButtonItem key="rightBarButtonItem" title="info" id="PN8-T0-33u"/>
+                        <barButtonItem key="rightBarButtonItem" title="AppInfo" id="PN8-T0-33u">
+                            <connections>
+                                <segue destination="fWa-zw-Qy0" kind="show" id="tlh-3Y-8Uh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapVIew" destination="e35-cc-4uv" id="OKV-Mq-0Pt"/>
@@ -97,7 +103,52 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1097" y="-138"/>
+            <point key="canvasLocation" x="1036" y="-138.0809595202399"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6k4-vZ-Zs7">
+            <objects>
+                <viewController id="fWa-zw-Qy0" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SWv-lS-4L8"/>
+                        <viewControllerLayoutGuide type="bottom" id="Uqn-Vl-ehH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IvI-pq-lxj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WHO(세계보건기구) 기준을 사용합니다" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jax-Ql-1zx">
+                                <rect key="frame" x="30" y="127" width="315" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="1" green="0.13018467453717719" blue="0.85440169760233764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTm-Tm-kZH">
+                                <rect key="frame" x="166" y="108" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="부산실내대기질은" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6NS-Ts-7x2">
+                                <rect key="frame" x="101" y="108" width="173" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="1" green="0.13018467450000001" blue="0.85440169759999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="who.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gc8-hz-hbq">
+                                <rect key="frame" x="0.0" y="202" width="375" height="98"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IAv-wg-b1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1986.4000000000001" y="-138.0809595202399"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PBi-bh-1iU">
@@ -118,4 +169,7 @@
             <point key="canvasLocation" x="21.600000000000001" y="-138.0809595202399"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="who.png" width="391" height="108"/>
+    </resources>
 </document>

@@ -11,6 +11,8 @@ import MapKit
 var item:[String:String] = [:]
 var items:[[String:String]] = []
 var inFo = ""
+var subInfo = ""
+
 class ViewController: UIViewController, MKMapViewDelegate {
     
     
@@ -42,9 +44,15 @@ class ViewController: UIViewController, MKMapViewDelegate {
         if(segControl.selectedSegmentIndex == 0){
             getList()
             inFo = "미세먼지"
-        }else{
+            subInfo = "㎍/m³"
+        }else if(segControl.selectedSegmentIndex == 1){
             getNo2List()
             inFo = "이산화질소"
+            subInfo = "ppm"
+        }else{
+            getCoList()
+            inFo = "일산화탄소"
+            subInfo = "ppm"
         }
         if let myItems = contents {
             for i in myItems {
@@ -63,21 +71,21 @@ class ViewController: UIViewController, MKMapViewDelegate {
                 //?는 닐이면 안하고 닐아니면 바로하고 컨디셔널 바인딩
                 let myTitle = title as? String
                 if myTitle == "서면역1호선대합실"{
-                    subTitle = "현재\(inFo)수치: " + item["서면역1호선대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["서면역1호선대합실"]! + "\(subInfo)"
                 }else if myTitle == "남포역대합실"{
-                    subTitle = "현재\(inFo)수치: " + item["남포역대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["남포역대합실"]! + "\(subInfo)"
                 }else if myTitle == "사상역대합실"{
-                    subTitle = "현재\(inFo)수치: " + item["사상역대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["사상역대합실"]! + "\(subInfo)"
                 }else if myTitle == "수영역대합실"{
-                    subTitle = "현재\(inFo)수치: " + item["수영역대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["수영역대합실"]! + "\(subInfo)"
                 }else if myTitle == "동래역4호선대합실"{
-                    subTitle = "현재\(inFo)수치: " + item["동래역4호선대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["동래역4호선대합실"]! + "\(subInfo)"
                 }else if myTitle == "덕천역대합실"{
-                    subTitle = "현재\(inFo)수치: " + item["덕천역대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["덕천역대합실"]! + "\(subInfo)"
                 }else if myTitle == "미남역대합실"{
-                    subTitle = "현재\(inFo)수치: " + item["미남역대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["미남역대합실"]! + "\(subInfo)"
                 }else {
-                    subTitle = "현재\(inFo)수치: " + item["연산역대합실"]!
+                    subTitle = "현재\(inFo)수치: " + item["연산역대합실"]! + "\(subInfo)"
                 }
                 annotation.coordinate.latitude = myLat
                 annotation.coordinate.longitude = myLong
@@ -111,7 +119,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView?.canShowCallout = true
             //seg조건 시작
-            if(segControl.selectedSegmentIndex == 0){
+            if(segControl.selectedSegmentIndex == 0){//미세먼지
                 
             
                 if Int(item[annotation.title!!]!)!  > 50 && Int(item[annotation.title!!]!)! < 101{
@@ -119,31 +127,36 @@ class ViewController: UIViewController, MKMapViewDelegate {
                     let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
                     leftIconView.image = UIImage(named: "image/bad.png")
                     annotationView?.leftCalloutAccessoryView = leftIconView
+                    
                 
                 }else if Int(item[annotation.title!!]!)! > 100{
                     annotationView?.pinTintColor = UIColor.red
                     let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
                     leftIconView.image = UIImage(named: "image/veryBad.png")
                     annotationView?.leftCalloutAccessoryView = leftIconView
+                    
                 
                 }else if Int(item[annotation.title!!]!)! > 30 && Int(item[annotation.title!!]!)! < 51{
                     annotationView?.pinTintColor = UIColor.green
                     let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
                     leftIconView.image = UIImage(named: "image/good.png")
                     annotationView?.leftCalloutAccessoryView = leftIconView
+                    
                 }else{
                     annotationView?.pinTintColor = UIColor.blue
                     let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
                     leftIconView.image = UIImage(named: "image/veryGood.png")
                     annotationView?.leftCalloutAccessoryView = leftIconView
+                    
                 }
                 
-            }else{//seg 조건
+            }else if(segControl.selectedSegmentIndex == 1){//이산화질소
                 if Double(item[annotation.title!!]!)!  > 0.059 && Double(item[annotation.title!!]!)! < 0.19{
                     annotationView?.pinTintColor = UIColor.orange
                     let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
                     leftIconView.image = UIImage(named: "image/bad.png")
                     annotationView?.leftCalloutAccessoryView = leftIconView
+                    
                     
                 }else if Double(item[annotation.title!!]!)! > 0.2{
                     annotationView?.pinTintColor = UIColor.red
@@ -151,22 +164,69 @@ class ViewController: UIViewController, MKMapViewDelegate {
                     leftIconView.image = UIImage(named: "image/veryBad.png")
                     annotationView?.leftCalloutAccessoryView = leftIconView
                     
+                    
                 }else if Double(item[annotation.title!!]!)! > 0.029 && Double(item[annotation.title!!]!)! < 0.06{
                     annotationView?.pinTintColor = UIColor.green
                     let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
                     leftIconView.image = UIImage(named: "image/good.png")
                     annotationView?.leftCalloutAccessoryView = leftIconView
+                    
                 }else{
                     annotationView?.pinTintColor = UIColor.blue
                     let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
                     leftIconView.image = UIImage(named: "image/veryGood.png")
                     annotationView?.leftCalloutAccessoryView = leftIconView
+                    
                 }
-            }//seg 조건
+            }else{//일산화탄소
+                if Double(item[annotation.title!!]!)!  > 8 && Double(item[annotation.title!!]!)! < 16{
+                    annotationView?.pinTintColor = UIColor.orange
+                    let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                    leftIconView.image = UIImage(named: "image/bad.png")
+                    annotationView?.leftCalloutAccessoryView = leftIconView
+                   
+                    
+                }else if Double(item[annotation.title!!]!)! > 15{
+                    annotationView?.pinTintColor = UIColor.red
+                    let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                    leftIconView.image = UIImage(named: "image/veryBad.png")
+                    annotationView?.leftCalloutAccessoryView = leftIconView
+                    
+                }else if Double(item[annotation.title!!]!)! > 1 && Double(item[annotation.title!!]!)! < 10{
+                    annotationView?.pinTintColor = UIColor.green
+                    let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                    leftIconView.image = UIImage(named: "image/good.png")
+                    annotationView?.leftCalloutAccessoryView = leftIconView
+                    
+                }else{
+                    annotationView?.pinTintColor = UIColor.blue
+                    let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+                    leftIconView.image = UIImage(named: "image/veryGood.png")
+                    annotationView?.leftCalloutAccessoryView = leftIconView
+                    
+                }
+            }
         }
         
         return annotationView
     }
+    
+//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+//        
+//        
+//        
+//        
+//        let alertController = UIAlertController(title: "현재상태", message: "", preferredStyle: .alert)
+//        
+//        
+//        
+//        let cancel = UIAlertAction(title: "취소", style: UIAlertActionStyle.destructive, handler: nil)
+//        
+//        alertController.addAction(cancel)
+//        
+//        self.present(alertController, animated: true, completion: nil)
+//        
+//    }
     
     //미세먼지(pm10)
     func getList(){
@@ -194,6 +254,28 @@ class ViewController: UIViewController, MKMapViewDelegate {
     func getNo2List(){
         
         let str = listEndPoint + "?serviceKey=\(serviceKey)&numOfRows=1&item=no2"
+        let parse = Parser()
+        if let url = URL(string: str){
+            if let parser = XMLParser(contentsOf: url){
+                
+                parser.delegate = parse
+                
+                let success = parser.parse()
+                if success {
+                    print("파싱성공")
+                    print(items)
+                }else{
+                    print("파싱실패")
+                }
+            }
+            
+        }
+    }
+    
+    //일산화탄소(Co)
+    func getCoList(){
+        
+        let str = listEndPoint + "?serviceKey=\(serviceKey)&numOfRows=1&item=co"
         let parse = Parser()
         if let url = URL(string: str){
             if let parser = XMLParser(contentsOf: url){
