@@ -66,5 +66,13 @@
 		<key>title</key>
 		<string>수영역대합실</string>
 	</dict>
+	<dict>
+		<key>lat</key>
+		<string>35.157728</string>
+		<key>long</key>
+		<string>129.058606</string>
+		<key>title</key>
+		<string>서면역2호선대합실</string>
+	</dict>
 </array>
 </plist>

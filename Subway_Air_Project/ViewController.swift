@@ -84,8 +84,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
                     subTitle = "현재\(inFo)수치: " + item["덕천역대합실"]! + "\(subInfo)"
                 }else if myTitle == "미남역대합실"{
                     subTitle = "현재\(inFo)수치: " + item["미남역대합실"]! + "\(subInfo)"
-                }else {
+                }else if myTitle == "연산역대합실"{
                     subTitle = "현재\(inFo)수치: " + item["연산역대합실"]! + "\(subInfo)"
+                }else{
+                    subTitle = "현재\(inFo)수치: " + item["서면역2호선대합실"]! + "\(subInfo)"
                 }
                 annotation.coordinate.latitude = myLat
                 annotation.coordinate.longitude = myLong
