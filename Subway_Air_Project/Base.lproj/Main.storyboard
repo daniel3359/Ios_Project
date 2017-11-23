@@ -89,7 +89,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="부산실내대기질" id="M6q-Xl-2kU">
-                        <barButtonItem key="rightBarButtonItem" title="AppInfo" id="PN8-T0-33u">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="PN8-T0-33u">
                             <connections>
                                 <segue destination="fWa-zw-Qy0" kind="show" id="tlh-3Y-8Uh"/>
                             </connections>
